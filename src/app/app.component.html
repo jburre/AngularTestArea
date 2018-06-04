@@ -1,0 +1,48 @@
+<courses></courses>
+<author></author>
+<favourite [isFavourite]="post.isFavourite" (change)="onFavouriteChanged($event)"></favourite>
+<bootstrap-panel>
+  <ng-container class="heading">Heading</ng-container>
+  <div class="body">
+    <h2>Body</h2>
+    <p>Some Content here</p>
+  </div>
+</bootstrap-panel>
+<like (liked)="onLikeChanged($event)">
+  <p class="likesCount">{{numberOfLikes}}</p>
+</like>
+<br/>
+<div *ngIf="courses.length>0 ; then coursesList else noCourses"></div>
+<ng-template #coursesList>
+  List of courses
+  <ul>
+    <li *ngFor="let course of courses; index as i; even as isEven; trackBy:trackCourse"> 
+      {{ i+1 }} - {{course.name}}
+      <span *ngIf="isEven">(EVEN)</span>
+      <button (click)="onRemove(course)">Remove</button>
+    </li>
+  </ul>
+  <button (click)="onAdd()">Add course</button>
+</ng-template>
+<ng-template #noCourses>
+  No courses yet
+</ng-template>
+<br/>
+<button
+  [ngStyle]="{
+    'backgroundColor':canSave? 'blue':gray,
+    'color':canSave? 'white':black
+  }"
+  (click)="loadCourses();">Load Courses</button>
+<br/>
+<ul class="nav nav-pills">
+  <li [class.active]="viewMode=='map'"><a (click)="viewMode='map'">MapView</a></li>
+  <li [class.active]="viewMode=='list'"><a (click)="viewMode='list'">ListView</a></li>
+</ul>
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">Map View Content</div>
+  <div *ngSwitchCase="'list'">List View Content</div>
+  <div *ngSwitchDefault>Otherwise</div>
+</div>
+
+<input type="text" [appInputFormat]="'uppercase'"/>

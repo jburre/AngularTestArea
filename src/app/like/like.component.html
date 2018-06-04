@@ -1,0 +1,3 @@
+<span class="glyphicon glyphicon-heart" [class.liked]="isLiked"
+[class.unLiked]="!isLiked" (click)="toggle()"></span>
+<ng-content select=".likesCount"></ng-content>

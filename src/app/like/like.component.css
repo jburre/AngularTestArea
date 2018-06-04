@@ -1,0 +1,12 @@
+.liked{
+    color:deeppink;
+    cursor:pointer;
+    float: left;
+    margin-right: 5px;
+}
+.unLiked{
+    color:#CCC;
+    cursor:pointer;
+    float: left;
+    margin-right: 5px;
+}
