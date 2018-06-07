@@ -1,0 +1,22 @@
+.zippy{
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.heading {
+    font-weight: bold;
+    padding:20px;
+    cursor: pointer;
+}
+.isActive{
+    background-color: #CCC;
+}
+
+.glyphicon {
+    float:right;
+}
+
+.body{
+    padding: 20px;
+    font-weight: bold;
+}

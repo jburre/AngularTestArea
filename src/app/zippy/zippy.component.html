@@ -1,0 +1,18 @@
+<div class="zippy">
+  <div class="heading" [class.isActive]="!isHidden" (click)="toggle()">
+    <p>{{ title }}</p>
+    <span 
+    class="glyphicon"
+    [ngClass]="{
+      'glyphicon-menu-down':isHidden,
+      'glyphicon-menu-up':!isHidden
+    }"></span>
+  </div>
+  <div class="body" *ngIf="!isHidden">
+      <ng-content></ng-content>
+  </div>
+</div>
+
+<p>
+  zippy works!
+</p>
