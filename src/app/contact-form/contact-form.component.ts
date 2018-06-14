@@ -7,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactFormComponent {
   
+  contactMethods= [
+    {id:1, name:"Email"},
+    {id:2, name:"Phone"},
+    {id:3, name:"Pigeon"},
+  ]
+
   log(x):void{
     console.log(x);
+  }
+
+  submit(f):void{
+    console.log(f);
   }
 }
