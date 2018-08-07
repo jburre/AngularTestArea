@@ -23,8 +23,8 @@ export class PostComponent implements OnInit{
      input.value="";
      this.postService.create(post)
         .subscribe(
-          response=>{
-            post["id"]=response.json().id;
+          newPost=>{
+            post["id"]=newPost.id;
             this.posts.push(post);
           },
           (error:AppError)=>{
@@ -37,17 +37,17 @@ export class PostComponent implements OnInit{
    updatePost(post){
      this.postService.update(post)
       .subscribe(
-        response=>{
-          console.log(response.json());
+        updatedPost=>{
+          console.log(updatedPost);
      });
    }
 
    deletePost(post){
      this.postService.delete(345)
      .subscribe(
-        response=>{
-          console.log(response.json());
-          this.updateListOfPosts(post);
+        deletedPost=>{
+          console.log(deletedPost);
+          this.updateListOfPosts(deletedPost);
      }, (error:AppError)=>{
        if (error instanceof NotFoundError){
          alert("Post has already been deleted");
@@ -65,8 +65,8 @@ export class PostComponent implements OnInit{
   ngOnInit(): void {
     this.postService.getAll()
       .subscribe(
-        response=>{
-          this.posts=response.json();
+        posts=>{
+          this.posts=posts;
       });
   }
 }
