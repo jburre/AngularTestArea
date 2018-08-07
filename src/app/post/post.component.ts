@@ -43,12 +43,20 @@ export class PostComponent implements OnInit{
    }
 
    deletePost(post){
-     this.postService.delete(345)
+      //optimistic approach
+     let index = this.posts.indexOf(post);
+     this.posts.splice(index,1);
+     this.postService.delete(post.id)
+    
+
      .subscribe(
         deletedPost=>{
           console.log(deletedPost);
-          this.updateListOfPosts(deletedPost);
+          //pessimistic approach
+          //this.updateListOfPosts(deletedPost);
      }, (error:AppError)=>{
+       //optimistic approach rollback
+       this.posts.splice(index,0,post);
        if (error instanceof NotFoundError){
          alert("Post has already been deleted");
        } else throw error;
