@@ -30,9 +30,7 @@ export class PostComponent implements OnInit{
           (error:AppError)=>{
             if (error instanceof BadInput){
               //this.form.setErrors(error.originalError);
-            } else {
-              console.log(error);
-            }
+            } else throw error;
      });
    }
 
@@ -41,13 +39,6 @@ export class PostComponent implements OnInit{
       .subscribe(
         response=>{
           console.log(response.json());
-     }, 
-        (error:AppError)=>{
-          if (error instanceof NotFoundError){
-
-          } else {
-            console.log(error);
-          }
      });
    }
 
@@ -57,14 +48,10 @@ export class PostComponent implements OnInit{
         response=>{
           console.log(response.json());
           this.updateListOfPosts(post);
-     }, 
-        (error:AppError)=>{
-          if (error instanceof NotFoundError){
-            alert()
-          } else{
-            alert('An unexpected error occured.');
-            console.log(error);
-          }
+     }, (error:AppError)=>{
+       if (error instanceof NotFoundError){
+         alert("Post has already been deleted");
+       } else throw error;
      });
    }
    private updateListOfPosts(post: any): any {
@@ -77,15 +64,6 @@ export class PostComponent implements OnInit{
       .subscribe(
         response=>{
           this.posts=response.json();
-      }, 
-      (error:AppError)=>{
-        if (error instanceof NotFoundError){
-          alert()
-        } else{
-          alert('An unexpected error occured.');
-          console.log(error);
-          }
-        }
-      );
+      });
   }
 }
