@@ -1,6 +1,7 @@
 import { AuthorService } from './author.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpModule} from '@angular/http';
 
 
 import { AppComponent } from './app.component';
@@ -17,6 +18,8 @@ import { ZippyComponent } from './zippy/zippy.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { PostComponent } from './post/post.component';
+import { PostService } from './services/post.service';
 
 @NgModule({
   declarations: [
@@ -31,15 +34,18 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
     ZippyComponent,
     ContactFormComponent,
     CourseFormComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [
     CoursesService,
-    AuthorService
+    AuthorService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })
